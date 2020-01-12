@@ -263,7 +263,7 @@ class MuPADLexer(RegexLexer):
 
 class SPAD(RegexLexer):
     """
-    A `SPAD`_ lexer. 
+    A `SPAD`_ lexer.
     Base on MuPAD lexer.
     Contributed by Christopher Creutzig <christopher@creutzig.de>.
 
@@ -1725,4 +1725,3 @@ class RdLexer(RegexLexer):
             (r'.', Text),
             ]
         }
-

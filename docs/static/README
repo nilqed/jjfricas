@@ -13,4 +13,3 @@ ls $STATIC/components/codemirror/mode/
 
 mkdir -p $STATIC/components/codemirror/mode/spad
 cp spad.js $STATIC/components/codemirror/mode/spad
-
