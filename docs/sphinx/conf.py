@@ -18,7 +18,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'jFriCAS'
-copyright = '2019, Ralf Hemmecke, Kurt Pagani'
+copyright = '2019-2020, Ralf Hemmecke, Kurt Pagani'
 author = 'Ralf Hemmecke, Kurt Pagani'
 
 # The full version, including alpha/beta/rc tags
