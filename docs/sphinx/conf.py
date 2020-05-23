@@ -2,7 +2,7 @@
 #
 # This file only contains a selection of the most common options. For a full
 # list see the documentation:
-# http://www.sphinx-doc.org/en/master/config
+# https://www.sphinx-doc.org/en/master/usage/configuration.html
 
 # -- Path setup --------------------------------------------------------------
 
@@ -18,8 +18,8 @@
 # -- Project information -----------------------------------------------------
 
 project = 'jFriCAS'
-copyright = '2019-2020, Ralf Hemmecke, Kurt Pagani'
-author = 'Ralf Hemmecke, Kurt Pagani'
+copyright = '2019-2020, Ralf Hemmecke and Kurt Pagani'
+author = 'Ralf Hemmecke and Kurt Pagani'
 
 # The full version, including alpha/beta/rc tags
 release = '0.3'

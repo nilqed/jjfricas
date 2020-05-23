@@ -1,5 +1,5 @@
 .. jFriCAS documentation master file, created by
-   sphinx-quickstart on Fri Aug 16 20:06:43 2019.
+   sphinx-quickstart on Sat May 23 18:27:19 2020.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
@@ -10,13 +10,6 @@ Welcome to jFriCAS's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   install.rst
-   usage.rst
-   config.rst
-   webspad.rst
-   remote.rst
-   docker.rst
-   gnuplot.rst
 
 
 Indices and tables
