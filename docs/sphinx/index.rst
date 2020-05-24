@@ -10,7 +10,7 @@ Welcome to jFriCAS's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-
+   webspad
 
 Indices and tables
 ==================
