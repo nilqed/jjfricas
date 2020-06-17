@@ -8,6 +8,34 @@ import json
 import os
 
 from IPython.core.display import display, HTML
+
+#+ipyshell
+from IPython.core.interactiveshell import InteractiveShell
+
+ipyshell = InteractiveShell()
+
+init = """
+import matplotlib.pyplot as plt
+import numpy as np
+from io import BytesIO
+import urllib, base64
+
+def _to_png(fig):
+    imgdata = BytesIO()
+    fig.savefig(imgdata, format='png')
+    imgdata.seek(0)
+    return urllib.parse.quote(
+        base64.b64encode(imgdata.getvalue()))
+
+def show(fig): return(_to_png(fig))
+"""
+
+ipyshell.run_cell(init)
+ipyshell_version = '1.0'
+#-ipyshell
+
+
+
 from IPython.display import IFrame
 
 path = os.path.abspath(__file__)
@@ -22,6 +50,11 @@ __version__ = '0.3'
 pycmd = ')python'
 shcmd = ')!'
 shutd = ')shutdown'
+
+#+ipyshell
+ipysh = ')ipysh'
+mplot = ')mplot'
+#-ipyshell
 
 fricas_start_options = '-noht'   ### -nox blocks if draw is used (others?)
 fricas_terminal = []             ###  E.g. ['xterm','-e'] for 'xterm'
@@ -123,6 +156,34 @@ class SPAD(Kernel):
                                {'name': 'stdout', 'text': self.output})
             return ok_status
 
+        #+ipyshell
+        if code.startswith(mplot):
+            ipycmd = code[len(mplot):]
+            ipyres = ipyshell.run_cell(ipycmd, False)
+            if not ipyres.success:
+               self.send_response(self.iopub_socket, 'stream',
+                 {'name': 'stderr', 'text': repr(ipyres.error_in_exec)})
+               return ok_status  
+            mpdata = dict()
+            mpdata['image/png'] = ipyres.result
+            display_data = {'data':mpdata, 'metadata':{}}
+            self.send_response(self.iopub_socket, 'display_data', display_data)   
+            return ok_status
+
+        if code.startswith(ipysh):
+            ipycmd = code[len(ipysh):]
+            ipyres = ipyshell.run_cell(ipycmd, False)
+            if not ipyres.success:
+                self.send_response(self.iopub_socket, 'stream',
+                  {'name': 'stderr', 'text': repr(ipyres.error_in_exec)}) 
+                return ok_status  
+            self.output = repr(ipyres.result)
+            self.send_response(self.iopub_socket, 'stream',
+              {'name': 'stdout', 'text': self.output})                        
+            return ok_status
+
+        #-ipyshell
+
         if code.startswith(shutd):
             # Shutdown requested
             self.do_shutdown(False)
@@ -146,6 +207,7 @@ class SPAD(Kernel):
             self.server.put(s)
 
             return ok_status
+
 
         # send code to hunchentoot and get response from FriCAS
 
