@@ -1,3 +1,9 @@
+**DEPRECATED** (to delete) 
+
+See https://github.com/fricas/jfricas
+
+https://jfricas.readthedocs.io/en/latest/
+
 ===============================
 FriCAS Jupyter Kernel (jfricas)
 ===============================
